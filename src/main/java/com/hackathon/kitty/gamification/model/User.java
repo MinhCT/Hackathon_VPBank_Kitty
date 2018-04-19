@@ -1,4 +1,4 @@
-package com.hackathon.kitty.gamification.models;
+package com.hackathon.kitty.gamification.model;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
