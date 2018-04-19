@@ -9,7 +9,7 @@ spring:
     driverClassName: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/kitty_bank
     username: root
-    password: kitty123
+    password: gali97
     
   jpa:
     hibernate.ddl-auto: update
