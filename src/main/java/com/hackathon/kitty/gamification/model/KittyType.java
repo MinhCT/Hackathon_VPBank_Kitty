@@ -1,82 +1,87 @@
 package com.hackathon.kitty.gamification.model;
 
-import javax.persistence.*;
 import java.util.Objects;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "kitty_type", schema = "kitty_bank", catalog = "")
 public class KittyType {
-    private int id;
-    private String name;
-    private byte gender;
-    private String image;
-    private byte isDeleted;
+	private int id;
+	private String name;
+	private byte gender;
+	private String image;
+	private boolean deleted;
 
-    @Id
-    @Column(name = "id", nullable = false)
-    public int getId() {
-        return id;
-    }
+	@Id
+	@Column(name = "id")
+	@NotNull
+	public int getId() {
+		return id;
+	}
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    @Basic
-    @Column(name = "name", nullable = false, length = 50)
-    public String getName() {
-        return name;
-    }
+	@Column(name = "name", length = 50)
+	@NotNull
+	public String getName() {
+		return name;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    @Basic
-    @Column(name = "gender", nullable = false)
-    public byte getGender() {
-        return gender;
-    }
+	@Column(name = "gender")
+	@NotNull
+	public byte getGender() {
+		return gender;
+	}
 
-    public void setGender(byte gender) {
-        this.gender = gender;
-    }
+	public void setGender(byte gender) {
+		this.gender = gender;
+	}
 
-    @Basic
-    @Column(name = "image", nullable = false, length = 128)
-    public String getImage() {
-        return image;
-    }
+	@Column(name = "image", length = 128)
+	@NotNull
+	public String getImage() {
+		return image;
+	}
 
-    public void setImage(String image) {
-        this.image = image;
-    }
+	public void setImage(String image) {
+		this.image = image;
+	}
 
-    @Basic
-    @Column(name = "isDeleted", nullable = false)
-    public byte getIsDeleted() {
-        return isDeleted;
-    }
+	@Column(name = "deleted")
+	@NotNull
+	public boolean isDeleted() {
+		return deleted;
+	}
 
-    public void setIsDeleted(byte isDeleted) {
-        this.isDeleted = isDeleted;
-    }
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        KittyType kittyType = (KittyType) o;
-        return id == kittyType.id &&
-                gender == kittyType.gender &&
-                isDeleted == kittyType.isDeleted &&
-                Objects.equals(name, kittyType.name) &&
-                Objects.equals(image, kittyType.image);
-    }
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		KittyType kittyType = (KittyType) o;
+		return id == kittyType.id && gender == kittyType.gender && deleted == kittyType.deleted
+				&& Objects.equals(name, kittyType.name) && Objects.equals(image, kittyType.image);
+	}
 
-    @Override
-    public int hashCode() {
+	@Override
+	public int hashCode() {
 
-        return Objects.hash(id, name, gender, image, isDeleted);
-    }
+		return Objects.hash(id, name, gender, image, deleted);
+	}
 }

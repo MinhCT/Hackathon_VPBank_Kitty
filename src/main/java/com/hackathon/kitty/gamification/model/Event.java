@@ -1,11 +1,12 @@
 package com.hackathon.kitty.gamification.model;
 
-import javax.persistence.Basic;
+import java.sql.Date;
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.sql.Date;
-import java.util.Objects;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Event {
@@ -15,10 +16,11 @@ public class Event {
 	private Date endDate;
 	private String xmlPath;
 	private int experience;
-	private byte isDeleted;
+	private boolean deleted;
 
 	@Id
-	@Column(name = "id", nullable = false)
+	@Column(name = "id")
+	@NotNull
 	public int getId() {
 		return id;
 	}
@@ -27,8 +29,8 @@ public class Event {
 		this.id = id;
 	}
 
-	@Basic
-	@Column(name = "name", nullable = false, length = 50)
+	@Column(name = "name", length = 50)
+	@NotNull
 	public String getName() {
 		return name;
 	}
@@ -37,8 +39,8 @@ public class Event {
 		this.name = name;
 	}
 
-	@Basic
-	@Column(name = "startDate", nullable = false)
+	@Column(name = "start_date")
+	@NotNull
 	public Date getStartDate() {
 		return startDate;
 	}
@@ -47,8 +49,8 @@ public class Event {
 		this.startDate = startDate;
 	}
 
-	@Basic
-	@Column(name = "endDate", nullable = false)
+	@Column(name = "end_date")
+	@NotNull
 	public Date getEndDate() {
 		return endDate;
 	}
@@ -57,8 +59,7 @@ public class Event {
 		this.endDate = endDate;
 	}
 
-	@Basic
-	@Column(name = "xmlPath", nullable = true, length = 128)
+	@Column(name = "xml_path", length = 128)
 	public String getXmlPath() {
 		return xmlPath;
 	}
@@ -67,8 +68,8 @@ public class Event {
 		this.xmlPath = xmlPath;
 	}
 
-	@Basic
-	@Column(name = "experience", nullable = false)
+	@Column(name = "experience")
+	@NotNull
 	public int getExperience() {
 		return experience;
 	}
@@ -77,14 +78,14 @@ public class Event {
 		this.experience = experience;
 	}
 
-	@Basic
-	@Column(name = "isDeleted", nullable = false)
-	public byte getIsDeleted() {
-		return isDeleted;
+	@Column(name = "deleted")
+	@NotNull
+	public boolean isDeleted() {
+		return deleted;
 	}
 
-	public void setIsDeleted(byte isDeleted) {
-		this.isDeleted = isDeleted;
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
 	}
 
 	@Override
@@ -94,14 +95,13 @@ public class Event {
 		if (o == null || getClass() != o.getClass())
 			return false;
 		Event event = (Event) o;
-		return id == event.id && experience == event.experience && isDeleted == event.isDeleted
+		return id == event.id && experience == event.experience && deleted == event.deleted
 				&& Objects.equals(name, event.name) && Objects.equals(startDate, event.startDate)
 				&& Objects.equals(endDate, event.endDate) && Objects.equals(xmlPath, event.xmlPath);
 	}
 
 	@Override
 	public int hashCode() {
-
-		return Objects.hash(id, name, startDate, endDate, xmlPath, experience, isDeleted);
+		return Objects.hash(id, name, startDate, endDate, xmlPath, experience, deleted);
 	}
 }

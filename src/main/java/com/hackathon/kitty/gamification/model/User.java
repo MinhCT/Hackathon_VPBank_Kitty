@@ -1,193 +1,244 @@
 package com.hackathon.kitty.gamification.model;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
 import java.sql.Date;
 import java.util.Objects;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+
 @Entity
 public class User {
-    private int id;
-    private String accountNumber;
-    private String password;
-    private String email;
-    private String phone;
-    private String fullName;
-    private byte gender;
-    private int age;
-    private Date dob;
-    private double balance;
-    private int creditPoint;
-    private Double savingBalance;
-    private int rank;
-    private byte isDeleted;
+	private int id;
+	private String accountNumber;
+	private String password;
+	private String email;
+	private String phone;
+	private String fullName;
+	private byte gender;
+	private int age;
+	private Date dob;
+	private double balance;
+	private int creditPoint;
+	private Double savingBalance;
+	private int rankId;
+	private boolean deleted;
+	private boolean creditCard;
+	private boolean internetBanking;
+	private boolean useVpp;
+	private boolean useDream;
+	private Date joinDate;
 
-    @Id
-    @Column(name = "id", nullable = false)
-    public int getId() {
-        return id;
-    }
+	@Id
+	@Column(name = "id", nullable = false)
+	public int getId() {
+		return id;
+	}
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    @Basic
-    @Column(name = "accountNumber", nullable = false, length = 50)
-    public String getAccountNumber() {
-        return accountNumber;
-    }
+	@Column(name = "account_number", length = 50)
+	@NotNull
+	public String getAccountNumber() {
+		return accountNumber;
+	}
 
-    public void setAccountNumber(String accountNumber) {
-        this.accountNumber = accountNumber;
-    }
+	public void setAccountNumber(String accountNumber) {
+		this.accountNumber = accountNumber;
+	}
 
-    @Basic
-    @Column(name = "password", nullable = false, length = 128)
-    public String getPassword() {
-        return password;
-    }
+	@Column(name = "password", length = 128)
+	@NotNull
+	public String getPassword() {
+		return password;
+	}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-    @Basic
-    @Column(name = "email", nullable = false, length = 50)
-    public String getEmail() {
-        return email;
-    }
+	@Column(name = "email", length = 50)
+	@NotNull
+	public String getEmail() {
+		return email;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    @Basic
-    @Column(name = "phone", nullable = false, length = 12)
-    public String getPhone() {
-        return phone;
-    }
+	@Column(name = "phone", length = 12)
+	@NotNull
+	public String getPhone() {
+		return phone;
+	}
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 
-    @Basic
-    @Column(name = "fullName", nullable = false, length = 50)
-    public String getFullName() {
-        return fullName;
-    }
+	@Column(name = "full_name", length = 50)
+	@NotNull
+	public String getFullName() {
+		return fullName;
+	}
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
 
-    @Basic
-    @Column(name = "gender", nullable = false)
-    public byte getGender() {
-        return gender;
-    }
+	@Column(name = "gender")
+	@NotNull
+	public byte getGender() {
+		return gender;
+	}
 
-    public void setGender(byte gender) {
-        this.gender = gender;
-    }
+	public void setGender(byte gender) {
+		this.gender = gender;
+	}
 
-    @Basic
-    @Column(name = "age", nullable = false)
-    public int getAge() {
-        return age;
-    }
+	@Column(name = "age")
+	@NotNull
+	public int getAge() {
+		return age;
+	}
 
-    public void setAge(int age) {
-        this.age = age;
-    }
+	public void setAge(int age) {
+		this.age = age;
+	}
 
-    @Basic
-    @Column(name = "dob", nullable = false)
-    public Date getDob() {
-        return dob;
-    }
+	@Column(name = "dob")
+	@NotNull
+	public Date getDob() {
+		return dob;
+	}
 
-    public void setDob(Date dob) {
-        this.dob = dob;
-    }
+	public void setDob(Date dob) {
+		this.dob = dob;
+	}
 
-    @Basic
-    @Column(name = "balance", nullable = false, precision = 0)
-    public double getBalance() {
-        return balance;
-    }
+	@Column(name = "balance", precision = 0)
+	@NotNull
+	public double getBalance() {
+		return balance;
+	}
 
-    public void setBalance(double balance) {
-        this.balance = balance;
-    }
+	public void setBalance(double balance) {
+		this.balance = balance;
+	}
 
-    @Basic
-    @Column(name = "creditPoint", nullable = false)
-    public int getCreditPoint() {
-        return creditPoint;
-    }
+	@Column(name = "credit_point")
+	@NotNull
+	public int getCreditPoint() {
+		return creditPoint;
+	}
 
-    public void setCreditPoint(int creditPoint) {
-        this.creditPoint = creditPoint;
-    }
+	public void setCreditPoint(int creditPoint) {
+		this.creditPoint = creditPoint;
+	}
 
-    @Basic
-    @Column(name = "savingBalance", nullable = true, precision = 0)
-    public Double getSavingBalance() {
-        return savingBalance;
-    }
+	@Column(name = "saving_balance", precision = 0)
+	@NotNull
+	public Double getSavingBalance() {
+		return savingBalance;
+	}
 
-    public void setSavingBalance(Double savingBalance) {
-        this.savingBalance = savingBalance;
-    }
+	public void setSavingBalance(Double savingBalance) {
+		this.savingBalance = savingBalance;
+	}
 
-    @Basic
-    @Column(name = "rank", nullable = false)
-    public int getRank() {
-        return rank;
-    }
+	@Column(name = "deleted")
+	@NotNull
+	public boolean isDeleted() {
+		return deleted;
+	}
 
-    public void setRank(int rank) {
-        this.rank = rank;
-    }
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
+	}
 
-    @Basic
-    @Column(name = "isDeleted", nullable = false)
-    public byte getIsDeleted() {
-        return isDeleted;
-    }
+	@Column(name = "rank_id")
+	@NotNull
+	public int getRankId() {
+		return rankId;
+	}
 
-    public void setIsDeleted(byte isDeleted) {
-        this.isDeleted = isDeleted;
-    }
+	public void setRankId(int rankId) {
+		this.rankId = rankId;
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return id == user.id &&
-                gender == user.gender &&
-                age == user.age &&
-                Double.compare(user.balance, balance) == 0 &&
-                creditPoint == user.creditPoint &&
-                rank == user.rank &&
-                isDeleted == user.isDeleted &&
-                Objects.equals(accountNumber, user.accountNumber) &&
-                Objects.equals(password, user.password) &&
-                Objects.equals(email, user.email) &&
-                Objects.equals(phone, user.phone) &&
-                Objects.equals(fullName, user.fullName) &&
-                Objects.equals(dob, user.dob) &&
-                Objects.equals(savingBalance, user.savingBalance);
-    }
+	@Column(name = "has_credit_card")
+	@NotNull
+	public boolean hasCreditCard() {
+		return creditCard;
+	}
 
-    @Override
-    public int hashCode() {
+	public void setCreditCard(boolean creditCard) {
+		this.creditCard = creditCard;
+	}
 
-        return Objects.hash(id, accountNumber, password, email, phone, fullName, gender, age, dob, balance, creditPoint, savingBalance, rank, isDeleted);
-    }
+	@Column(name = "has_internet_banking")
+	@NotNull
+	public boolean hasInternetBanking() {
+		return internetBanking;
+	}
+
+	public void setInternetBanking(boolean internetBanking) {
+		this.internetBanking = internetBanking;
+	}
+
+	@Column(name = "user_vpp")
+	@NotNull
+	public boolean doUseVpp() {
+		return useVpp;
+	}
+
+	public void setUseVpp(boolean useVpp) {
+		this.useVpp = useVpp;
+	}
+
+	@Column(name = "use_dream")
+	@NotNull
+	public boolean doUseDream() {
+		return useDream;
+	}
+
+	public void setUseDream(boolean useDream) {
+		this.useDream = useDream;
+	}
+
+	@Column(name = "join_date")
+	@NotNull
+	public Date getJoinDate() {
+		return joinDate;
+	}
+
+	public void setJoinDate(Date joinDate) {
+		this.joinDate = joinDate;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		User user = (User) o;
+		return id == user.id && gender == user.gender && age == user.age && Double.compare(user.balance, balance) == 0
+				&& creditPoint == user.creditPoint && rankId == user.rankId && deleted == user.deleted
+				&& Objects.equals(accountNumber, user.accountNumber) && Objects.equals(password, user.password)
+				&& Objects.equals(email, user.email) && Objects.equals(phone, user.phone)
+				&& Objects.equals(fullName, user.fullName) && Objects.equals(dob, user.dob)
+				&& Objects.equals(savingBalance, user.savingBalance);
+	}
+
+	@Override
+	public int hashCode() {
+
+		return Objects.hash(id, accountNumber, password, email, phone, fullName, gender, age, dob, balance, creditPoint,
+				savingBalance, rankId, deleted);
+	}
 }
