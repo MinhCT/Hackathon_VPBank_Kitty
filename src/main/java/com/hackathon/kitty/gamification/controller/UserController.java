@@ -94,10 +94,12 @@ public class UserController{
 
         return new ResponseEntity<>("Deleted", HttpStatus.OK);
     }
-    @GetMapping("/authenticate")
-    public ResponseEntity<?> authenticateUser(@RequestParam("accNumber") String accountNumber, @RequestParam("password") String password){
-        User user1 = userService.findUserByAccountNumber(accountNumber);
-        if (user1.getPassword().equals(password)){
+    @PostMapping("/authenticate")
+    public ResponseEntity<?> authenticateUser(@RequestBody User user){
+        System.out.println(user.getAccountNumber() + "abc");
+
+        User user1 = userService.findUserByAccountNumber(user.getAccountNumber());
+        if (user1.getPassword().equals(user.getPassword())){
             return new ResponseEntity<>(user1, HttpStatus.OK);
         } else { 
             return new ResponseEntity<>("Wrong username or password", HttpStatus.BAD_REQUEST);
