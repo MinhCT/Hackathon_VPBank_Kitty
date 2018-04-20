@@ -23,7 +23,6 @@ public class UserCompleteEvent implements Serializable {
 
 	@Id
 	@Column(name = "user_id")
-	@NotNull
 	public int getUserId() {
 		return userId;
 	}
@@ -34,7 +33,6 @@ public class UserCompleteEvent implements Serializable {
 
 	@Id
 	@Column(name = "event_id")
-	@NotNull
 	public int getEventId() {
 		return eventId;
 	}
