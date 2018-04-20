@@ -11,8 +11,7 @@ import javax.validation.constraints.NotNull;
 public class Rank {
 	@Id
 	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@NotNull
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	@Column(name = "rank_name")
