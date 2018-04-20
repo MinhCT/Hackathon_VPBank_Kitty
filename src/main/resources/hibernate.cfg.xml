@@ -6,14 +6,14 @@
     <session-factory>
         <property name="connection.url">jdbc:mysql://localhost:3306/kitty_bank</property>
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-        <mapping class="com.hackathon.kitty.gamification.models.Event"/>
-        <mapping class="com.hackathon.kitty.gamification.models.Food"/>
-        <mapping class="com.hackathon.kitty.gamification.models.Kitty"/>
-        <mapping class="com.hackathon.kitty.gamification.models.KittyType"/>
-        <mapping class="com.hackathon.kitty.gamification.models.User"/>
-        <mapping class="com.hackathon.kitty.gamification.models.UserCompleteEvent"/>
+        <mapping class="com.hackathon.kitty.gamification.model.Event"/>
+        <mapping class="com.hackathon.kitty.gamification.model.Food"/>
+        <mapping class="com.hackathon.kitty.gamification.model.Kitty"/>
+        <mapping class="com.hackathon.kitty.gamification.model.KittyType"/>
+        <mapping class="com.hackathon.kitty.gamification.model.User"/>
+        <mapping class="com.hackathon.kitty.gamification.model.UserCompleteEvent"/>
         <property name="connection.username">root</property>
-        <property name="connection.password">gali97</property>
+        <property name="connection.password"></property>
 
         <!-- DB schema will be updated if needed -->
         <!-- <property name="hbm2ddl.auto">update</property> -->
