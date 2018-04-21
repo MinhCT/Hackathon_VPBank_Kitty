@@ -24,7 +24,7 @@ import com.hackathon.kitty.gamification.service.TransactionTypeService;
 import com.hackathon.kitty.gamification.util.specification.BaseSpecificationsBuilder;
 
 @RestController
-@RequestMapping("/api/transactionType")
+@RequestMapping("/api/transaction_type")
 public class TransactionTypeController {
 
 	@Autowired

@@ -24,7 +24,7 @@ import com.hackathon.kitty.gamification.service.UserCompleteEventService;
 import com.hackathon.kitty.gamification.util.specification.BaseSpecificationsBuilder;
 
 @RestController
-@RequestMapping("/api/userCompleteUserCompleteEvent")
+@RequestMapping("/api/user_event")
 public class UserCompleteEventController {
 
 	@Autowired

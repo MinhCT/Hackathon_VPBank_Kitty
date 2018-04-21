@@ -24,7 +24,7 @@ import com.hackathon.kitty.gamification.service.KittyTypeService;
 import com.hackathon.kitty.gamification.util.specification.BaseSpecificationsBuilder;
 
 @RestController
-@RequestMapping("/api/kittyType")
+@RequestMapping("/api/kitty_type")
 public class KittyTypeController {
 
 	@Autowired
