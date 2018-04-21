@@ -22,13 +22,17 @@ public class Transaction implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name = "sender_id")
+	@Column(name = "sender_account")
 	@NotNull
-	private int senderId;
+	private String senderAccount;
 
-	@Column(name = "receiver_id")
+	@Column(name = "receiver_account")
 	@NotNull
-	private int receiverId;
+	private String receiverAccount;
+
+	@Column(name = "receiver_name")
+	@NotNull
+	private String receiverName;
 
 	@Column(name = "balance")
 	@NotNull
@@ -58,20 +62,28 @@ public class Transaction implements Serializable {
 		this.id = id;
 	}
 
-	public int getSenderId() {
-		return senderId;
+	public String getSenderAccount() {
+		return senderAccount;
 	}
 
-	public void setSenderId(int senderId) {
-		this.senderId = senderId;
+	public void setSenderAccount(String senderAccount) {
+		this.senderAccount = senderAccount;
 	}
 
-	public int getReceiverId() {
-		return receiverId;
+	public String getReceiverName() {
+		return receiverName;
 	}
 
-	public void setReceiverId(int receiverId) {
-		this.receiverId = receiverId;
+	public void setReceiverName(String receiverName) {
+		this.receiverName = receiverName;
+	}
+
+	public String getReceiverAccount() {
+		return receiverAccount;
+	}
+
+	public void setReceiverAccount(String receiverAccount) {
+		this.receiverAccount = receiverAccount;
 	}
 
 	public double getBalance() {
