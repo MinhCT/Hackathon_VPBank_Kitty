@@ -12,8 +12,8 @@ public class HungerHygieneCalculator {
     // retrieved from the database based on the rate and current time
     public static Kitty recalculateHungerAndHygiene(Kitty kitty) {
         final long CURRENT_MILLI_SEC = System.currentTimeMillis();
-        long lastFeedMilliSec = kitty.getLastFeedDate().getTime();
-        long lastBathMilliSec = kitty.getLastBathDate().getTime();
+        long lastFeedMilliSec = kitty.getLastFeedDate().getTime() - 25200000;
+        long lastBathMilliSec = kitty.getLastBathDate().getTime() - 25200000;
 
         long feedDiffer = CURRENT_MILLI_SEC - lastFeedMilliSec;
         long bathDiffer = CURRENT_MILLI_SEC - lastBathMilliSec;
