@@ -109,4 +109,10 @@ public class TransactionController {
 
 		return new ResponseEntity<>("Deleted", HttpStatus.OK);
 	}
+
+	@GetMapping("/sender_or_receiver")
+	public ResponseEntity<?> getTransactionsByUserAndSender(
+			@RequestParam(value = "accountNumber") String accountNumber) {
+		return new ResponseEntity<>(transactionService.getTransactionsByUserAndSender(accountNumber), HttpStatus.OK);
+	}
 }

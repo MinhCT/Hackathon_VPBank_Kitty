@@ -52,4 +52,8 @@ public class TransactionService {
 	public void deleteTransaction(Transaction transaction) {
 		transactionRepository.delete(transaction);
 	}
+
+	public List<Transaction> getTransactionsByUserAndSender(String accountNumber) {
+		return transactionRepository.getTransactionsByUserAndSender(accountNumber);
+	}
 }
