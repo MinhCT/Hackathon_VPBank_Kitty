@@ -1,5 +1,7 @@
 package com.hackathon.kitty.gamification.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,7 +10,12 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class TransactionType {
+public class TransactionType implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3729670597606703979L;
+
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
