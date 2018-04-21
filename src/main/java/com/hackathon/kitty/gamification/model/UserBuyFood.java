@@ -11,6 +11,9 @@ public class UserBuyFood {
     private int foodId;
     private int quantity;
 
+    public UserBuyFood() {
+    }
+
     public UserBuyFood(int id, int userId, int foodId, int quantity) {
         this.id = id;
         this.userId = userId;
