@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.hackathon.kitty.gamification.model.User;
+import com.hackathon.kitty.gamification.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -29,6 +31,9 @@ public class TransactionController {
 
 	@Autowired
 	TransactionService transactionService;
+
+	@Autowired
+	UserService userService;
 
 	@GetMapping("")
 	public ResponseEntity<List<Transaction>> getAllTransaction() {
@@ -77,7 +82,13 @@ public class TransactionController {
 	public ResponseEntity<?> createTransaction(@RequestBody Transaction transaction) {
 		// TODO: add checks (for duplicate id for example -> return error message)
 		// return new ResponseEntity<>("Error message", HttpStatus.BAD_REQUEST);
-
+		User sender = userService.findUserByAccountNumber(transaction.getSenderAccount());
+		User receiver = userService.findUserByAccountNumber(transaction.getReceiverAccount());
+		receiver.setBalance(receiver.getBalance() + transaction.getBalance());
+		sender.setBalance(sender.getBalance() - transaction.getBalance());
+		sender.setCreditPoint(sender.getCreditPoint() + transaction.getCreditPoint());
+		userService.updateUser(sender);
+		userService.updateUser(receiver);
 		return new ResponseEntity<>(transactionService.createTransaction(transaction), HttpStatus.OK);
 	}
 

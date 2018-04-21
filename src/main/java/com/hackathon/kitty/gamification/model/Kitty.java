@@ -6,11 +6,7 @@ import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Objects;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -35,6 +31,17 @@ public class Kitty implements Serializable {
     private int hygiene;
     private Timestamp lastFeedDate;
     private Timestamp lastBathDate;
+
+    @Transient
+    private long mili;
+
+    public long getMili() {
+        return System.currentTimeMillis();
+    }
+
+    public void setMili(long mili) {
+        this.mili = mili;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
