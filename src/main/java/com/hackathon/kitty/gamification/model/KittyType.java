@@ -25,6 +25,7 @@ public class KittyType implements Serializable {
     private String image;
     private boolean deleted;
     private String description;
+    private int price;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -84,6 +85,15 @@ public class KittyType implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Column(name="price")
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     @Override

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.hackathon.kitty.gamification.model.Kitty;
 import com.hackathon.kitty.gamification.repository.KittyRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class KittyService {
@@ -37,7 +38,7 @@ public class KittyService {
 		// TODO: add checks for updating
 		return kittyRepository.save(kitty);
 	}
-
+	@Transactional(rollbackFor={Exception.class})
 	public Kitty createKitty(Kitty kitty) {
 		// TODO: add checks for inserting
 		return kittyRepository.save(kitty);

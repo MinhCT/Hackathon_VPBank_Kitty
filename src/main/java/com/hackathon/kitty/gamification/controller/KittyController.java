@@ -98,7 +98,6 @@ public class KittyController {
 		// return new ResponseEntity<>("Error message", HttpStatus.BAD_REQUEST);
 
 		kittyService.deleteKitty(kitty);
-
 		return new ResponseEntity<>("Deleted", HttpStatus.OK);
 	}
 
