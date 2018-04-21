@@ -5,12 +5,12 @@ spring:
     name: kittybank
   profiles:
 #    Uncomment the line below to use local config, comment when push/pull
-#   active: local
+# active:local
   datasource:
     driverClassName: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/kitty_bank
     username: root
-    password: 123456
+    password: kitty123
   jpa:
     hibernate.ddl-auto: update
     generate-ddl: true
