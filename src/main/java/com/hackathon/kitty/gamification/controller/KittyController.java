@@ -99,12 +99,12 @@ public class KittyController {
 		return new ResponseEntity<>(kittyService.findKittyById(kittyId), HttpStatus.OK);
 	}
 
-	@PostMapping("/feed")
+	@GetMapping("/feed")
 	public ResponseEntity<Kitty> feedKitty(@RequestParam("kittyId") String kittyId, @RequestParam("foodId") String foodId) {
 		return new ResponseEntity<>(kittyService.feedKitty(kittyId, foodId), HttpStatus.OK);
 	}
 
-	@PostMapping("/bath")
+	@GetMapping("/bath")
 	public ResponseEntity<Kitty> bathKitty(@RequestParam("kittyId") String kittyId) {
 		return new ResponseEntity<>(kittyService.bathKitty(kittyId), HttpStatus.OK);
 	}
