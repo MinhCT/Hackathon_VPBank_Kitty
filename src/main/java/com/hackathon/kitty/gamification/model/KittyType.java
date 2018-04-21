@@ -1,5 +1,6 @@
 package com.hackathon.kitty.gamification.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -12,7 +13,12 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "kitty_type", schema = "kitty_bank", catalog = "")
-public class KittyType {
+public class KittyType implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4535660095041334174L;
+
 	private int id;
 	private String name;
 	private byte gender;

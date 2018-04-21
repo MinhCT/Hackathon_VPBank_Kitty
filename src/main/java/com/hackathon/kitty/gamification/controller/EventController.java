@@ -19,30 +19,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hackathon.kitty.gamification.model.Food;
-import com.hackathon.kitty.gamification.service.FoodService;
+import com.hackathon.kitty.gamification.model.Event;
+import com.hackathon.kitty.gamification.service.EventService;
 import com.hackathon.kitty.gamification.util.specification.BaseSpecificationsBuilder;
 
 @RestController
-@RequestMapping("/api/food")
-public class FoodController {
+@RequestMapping("/api/event")
+public class EventController {
 
 	@Autowired
-	FoodService foodService;
+	EventService eventService;
 
 	@GetMapping("")
-	public ResponseEntity<List<Food>> getAllFood() {
-		return new ResponseEntity<>(foodService.getAllFood(), HttpStatus.OK);
+	public ResponseEntity<List<Event>> getAllEvent() {
+		return new ResponseEntity<>(eventService.getAllEvent(), HttpStatus.OK);
 	}
 
 	@GetMapping("/paging")
-	public ResponseEntity<Page<Food>> getAllFood(Pageable pageable) {
-		return new ResponseEntity<>(foodService.getAllFood(pageable), HttpStatus.OK);
+	public ResponseEntity<Page<Event>> getAllEvent(Pageable pageable) {
+		return new ResponseEntity<>(eventService.getAllEvent(pageable), HttpStatus.OK);
 	}
 
 	@GetMapping("/search")
-	public ResponseEntity<List<Food>> searchFood(@RequestParam(value = "query") String query) {
-		BaseSpecificationsBuilder<Food> builder = new BaseSpecificationsBuilder<>();
+	public ResponseEntity<List<Event>> searchEvent(@RequestParam(value = "query") String query) {
+		BaseSpecificationsBuilder<Event> builder = new BaseSpecificationsBuilder<>();
 
 		Pattern pattern = Pattern.compile("(\\w+?)(:|<|>)(.*?),");
 		Matcher matcher = pattern.matcher(query + ",");
@@ -51,14 +51,14 @@ public class FoodController {
 			builder.with(matcher.group(1), matcher.group(2), matcher.group(3));
 		}
 
-		Specification<Food> spec = builder.build();
+		Specification<Event> spec = builder.build();
 
-		return new ResponseEntity<>(foodService.findFoodBySpec(spec), HttpStatus.OK);
+		return new ResponseEntity<>(eventService.findEventBySpec(spec), HttpStatus.OK);
 	}
 
 	@GetMapping("/search/paging")
-	public ResponseEntity<Page<Food>> searchFood(@RequestParam(value = "query") String query, Pageable pageable) {
-		BaseSpecificationsBuilder<Food> builder = new BaseSpecificationsBuilder<>();
+	public ResponseEntity<Page<Event>> searchEvent(@RequestParam(value = "query") String query, Pageable pageable) {
+		BaseSpecificationsBuilder<Event> builder = new BaseSpecificationsBuilder<>();
 
 		Pattern pattern = Pattern.compile("(\\w+?)(:|<|>)(.*?),");
 		Matcher matcher = pattern.matcher(query + ",");
@@ -67,33 +67,33 @@ public class FoodController {
 			builder.with(matcher.group(1), matcher.group(2), matcher.group(3));
 		}
 
-		Specification<Food> spec = builder.build();
+		Specification<Event> spec = builder.build();
 
-		return new ResponseEntity<>(foodService.findFoodBySpec(spec, pageable), HttpStatus.OK);
+		return new ResponseEntity<>(eventService.findEventBySpec(spec, pageable), HttpStatus.OK);
 	}
 
 	@PostMapping("")
-	public ResponseEntity<?> createFood(@RequestBody Food food) {
+	public ResponseEntity<?> createEvent(@RequestBody Event event) {
 		// TODO: add checks (for duplicate id for example -> return error message)
 		// return new ResponseEntity<>("Error message", HttpStatus.BAD_REQUEST);
 
-		return new ResponseEntity<>(foodService.createFood(food), HttpStatus.OK);
+		return new ResponseEntity<>(eventService.createEvent(event), HttpStatus.OK);
 	}
 
 	@PutMapping("")
-	public ResponseEntity<?> updateFood(@RequestBody Food food) {
+	public ResponseEntity<?> updateEvent(@RequestBody Event event) {
 		// TODO: add checks (for duplicate id for example -> return error message)
 		// return new ResponseEntity<>("Error message", HttpStatus.BAD_REQUEST);
 
-		return new ResponseEntity<>(foodService.updateFood(food), HttpStatus.OK);
+		return new ResponseEntity<>(eventService.updateEvent(event), HttpStatus.OK);
 	}
 
 	@DeleteMapping("")
-	public ResponseEntity<?> deleteFood(@RequestBody Food food) {
+	public ResponseEntity<?> deleteEvent(@RequestBody Event event) {
 		// TODO: add checks (for duplicate id for example -> return error message)
 		// return new ResponseEntity<>("Error message", HttpStatus.BAD_REQUEST);
 
-		foodService.deleteFood(food);
+		eventService.deleteEvent(event);
 
 		return new ResponseEntity<>("Deleted", HttpStatus.OK);
 	}

@@ -19,30 +19,31 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hackathon.kitty.gamification.model.Food;
-import com.hackathon.kitty.gamification.service.FoodService;
+import com.hackathon.kitty.gamification.model.UserCompleteEvent;
+import com.hackathon.kitty.gamification.service.UserCompleteEventService;
 import com.hackathon.kitty.gamification.util.specification.BaseSpecificationsBuilder;
 
 @RestController
-@RequestMapping("/api/food")
-public class FoodController {
+@RequestMapping("/api/user_event")
+public class UserCompleteEventController {
 
 	@Autowired
-	FoodService foodService;
+	UserCompleteEventService userCompleteEventService;
 
 	@GetMapping("")
-	public ResponseEntity<List<Food>> getAllFood() {
-		return new ResponseEntity<>(foodService.getAllFood(), HttpStatus.OK);
+	public ResponseEntity<List<UserCompleteEvent>> getAllUserCompleteEvent() {
+		return new ResponseEntity<>(userCompleteEventService.getAllUserCompleteEvent(), HttpStatus.OK);
 	}
 
 	@GetMapping("/paging")
-	public ResponseEntity<Page<Food>> getAllFood(Pageable pageable) {
-		return new ResponseEntity<>(foodService.getAllFood(pageable), HttpStatus.OK);
+	public ResponseEntity<Page<UserCompleteEvent>> getAllUserCompleteEvent(Pageable pageable) {
+		return new ResponseEntity<>(userCompleteEventService.getAllUserCompleteEvent(pageable), HttpStatus.OK);
 	}
 
 	@GetMapping("/search")
-	public ResponseEntity<List<Food>> searchFood(@RequestParam(value = "query") String query) {
-		BaseSpecificationsBuilder<Food> builder = new BaseSpecificationsBuilder<>();
+	public ResponseEntity<List<UserCompleteEvent>> searchUserCompleteEvent(
+			@RequestParam(value = "query") String query) {
+		BaseSpecificationsBuilder<UserCompleteEvent> builder = new BaseSpecificationsBuilder<>();
 
 		Pattern pattern = Pattern.compile("(\\w+?)(:|<|>)(.*?),");
 		Matcher matcher = pattern.matcher(query + ",");
@@ -51,14 +52,15 @@ public class FoodController {
 			builder.with(matcher.group(1), matcher.group(2), matcher.group(3));
 		}
 
-		Specification<Food> spec = builder.build();
+		Specification<UserCompleteEvent> spec = builder.build();
 
-		return new ResponseEntity<>(foodService.findFoodBySpec(spec), HttpStatus.OK);
+		return new ResponseEntity<>(userCompleteEventService.findUserCompleteEventBySpec(spec), HttpStatus.OK);
 	}
 
 	@GetMapping("/search/paging")
-	public ResponseEntity<Page<Food>> searchFood(@RequestParam(value = "query") String query, Pageable pageable) {
-		BaseSpecificationsBuilder<Food> builder = new BaseSpecificationsBuilder<>();
+	public ResponseEntity<Page<UserCompleteEvent>> searchUserCompleteEvent(@RequestParam(value = "query") String query,
+			Pageable pageable) {
+		BaseSpecificationsBuilder<UserCompleteEvent> builder = new BaseSpecificationsBuilder<>();
 
 		Pattern pattern = Pattern.compile("(\\w+?)(:|<|>)(.*?),");
 		Matcher matcher = pattern.matcher(query + ",");
@@ -67,33 +69,36 @@ public class FoodController {
 			builder.with(matcher.group(1), matcher.group(2), matcher.group(3));
 		}
 
-		Specification<Food> spec = builder.build();
+		Specification<UserCompleteEvent> spec = builder.build();
 
-		return new ResponseEntity<>(foodService.findFoodBySpec(spec, pageable), HttpStatus.OK);
+		return new ResponseEntity<>(userCompleteEventService.findUserCompleteEventBySpec(spec, pageable),
+				HttpStatus.OK);
 	}
 
 	@PostMapping("")
-	public ResponseEntity<?> createFood(@RequestBody Food food) {
+	public ResponseEntity<?> createUserCompleteEvent(@RequestBody UserCompleteEvent userCompleteUserCompleteEvent) {
 		// TODO: add checks (for duplicate id for example -> return error message)
 		// return new ResponseEntity<>("Error message", HttpStatus.BAD_REQUEST);
 
-		return new ResponseEntity<>(foodService.createFood(food), HttpStatus.OK);
+		return new ResponseEntity<>(userCompleteEventService.createUserCompleteEvent(userCompleteUserCompleteEvent),
+				HttpStatus.OK);
 	}
 
 	@PutMapping("")
-	public ResponseEntity<?> updateFood(@RequestBody Food food) {
+	public ResponseEntity<?> updateUserCompleteEvent(@RequestBody UserCompleteEvent userCompleteUserCompleteEvent) {
 		// TODO: add checks (for duplicate id for example -> return error message)
 		// return new ResponseEntity<>("Error message", HttpStatus.BAD_REQUEST);
 
-		return new ResponseEntity<>(foodService.updateFood(food), HttpStatus.OK);
+		return new ResponseEntity<>(userCompleteEventService.updateUserCompleteEvent(userCompleteUserCompleteEvent),
+				HttpStatus.OK);
 	}
 
 	@DeleteMapping("")
-	public ResponseEntity<?> deleteFood(@RequestBody Food food) {
+	public ResponseEntity<?> deleteUserCompleteEvent(@RequestBody UserCompleteEvent userCompleteUserCompleteEvent) {
 		// TODO: add checks (for duplicate id for example -> return error message)
 		// return new ResponseEntity<>("Error message", HttpStatus.BAD_REQUEST);
 
-		foodService.deleteFood(food);
+		userCompleteEventService.deleteUserCompleteEvent(userCompleteUserCompleteEvent);
 
 		return new ResponseEntity<>("Deleted", HttpStatus.OK);
 	}
