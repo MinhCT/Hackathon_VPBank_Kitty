@@ -1,5 +1,6 @@
 package com.hackathon.kitty.gamification.model;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.Objects;
 
@@ -11,7 +12,12 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class User {
+public class User implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1761751725260345298L;
+
 	private int id;
 	private String accountNumber;
 	private String password;
@@ -175,7 +181,7 @@ public class User {
 
 	@Column(name = "has_credit_card")
 	@NotNull
-	public boolean hasCreditCard() {
+	public boolean isCreditCard() {
 		return creditCard;
 	}
 
@@ -185,7 +191,7 @@ public class User {
 
 	@Column(name = "has_internet_banking")
 	@NotNull
-	public boolean hasInternetBanking() {
+	public boolean isInternetBanking() {
 		return internetBanking;
 	}
 
@@ -193,9 +199,9 @@ public class User {
 		this.internetBanking = internetBanking;
 	}
 
-	@Column(name = "user_vpp")
+	@Column(name = "use_vpp")
 	@NotNull
-	public boolean doUseVpp() {
+	public boolean isUseVpp() {
 		return useVpp;
 	}
 
@@ -205,7 +211,7 @@ public class User {
 
 	@Column(name = "use_dream")
 	@NotNull
-	public boolean doUseDream() {
+	public boolean isUseDream() {
 		return useDream;
 	}
 

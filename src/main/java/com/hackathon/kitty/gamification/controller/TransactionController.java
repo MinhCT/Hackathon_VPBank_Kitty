@@ -19,30 +19,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hackathon.kitty.gamification.model.Food;
-import com.hackathon.kitty.gamification.service.FoodService;
+import com.hackathon.kitty.gamification.model.Transaction;
+import com.hackathon.kitty.gamification.service.TransactionService;
 import com.hackathon.kitty.gamification.util.specification.BaseSpecificationsBuilder;
 
 @RestController
-@RequestMapping("/api/food")
-public class FoodController {
+@RequestMapping("/api/transaction")
+public class TransactionController {
 
 	@Autowired
-	FoodService foodService;
+	TransactionService transactionService;
 
 	@GetMapping("")
-	public ResponseEntity<List<Food>> getAllFood() {
-		return new ResponseEntity<>(foodService.getAllFood(), HttpStatus.OK);
+	public ResponseEntity<List<Transaction>> getAllTransaction() {
+		return new ResponseEntity<>(transactionService.getAllTransaction(), HttpStatus.OK);
 	}
 
 	@GetMapping("/paging")
-	public ResponseEntity<Page<Food>> getAllFood(Pageable pageable) {
-		return new ResponseEntity<>(foodService.getAllFood(pageable), HttpStatus.OK);
+	public ResponseEntity<Page<Transaction>> getAllTransaction(Pageable pageable) {
+		return new ResponseEntity<>(transactionService.getAllTransaction(pageable), HttpStatus.OK);
 	}
 
 	@GetMapping("/search")
-	public ResponseEntity<List<Food>> searchFood(@RequestParam(value = "query") String query) {
-		BaseSpecificationsBuilder<Food> builder = new BaseSpecificationsBuilder<>();
+	public ResponseEntity<List<Transaction>> searchTransaction(@RequestParam(value = "query") String query) {
+		BaseSpecificationsBuilder<Transaction> builder = new BaseSpecificationsBuilder<>();
 
 		Pattern pattern = Pattern.compile("(\\w+?)(:|<|>)(.*?),");
 		Matcher matcher = pattern.matcher(query + ",");
@@ -51,14 +51,15 @@ public class FoodController {
 			builder.with(matcher.group(1), matcher.group(2), matcher.group(3));
 		}
 
-		Specification<Food> spec = builder.build();
+		Specification<Transaction> spec = builder.build();
 
-		return new ResponseEntity<>(foodService.findFoodBySpec(spec), HttpStatus.OK);
+		return new ResponseEntity<>(transactionService.findTransactionBySpec(spec), HttpStatus.OK);
 	}
 
 	@GetMapping("/search/paging")
-	public ResponseEntity<Page<Food>> searchFood(@RequestParam(value = "query") String query, Pageable pageable) {
-		BaseSpecificationsBuilder<Food> builder = new BaseSpecificationsBuilder<>();
+	public ResponseEntity<Page<Transaction>> searchTransaction(@RequestParam(value = "query") String query,
+			Pageable pageable) {
+		BaseSpecificationsBuilder<Transaction> builder = new BaseSpecificationsBuilder<>();
 
 		Pattern pattern = Pattern.compile("(\\w+?)(:|<|>)(.*?),");
 		Matcher matcher = pattern.matcher(query + ",");
@@ -67,33 +68,33 @@ public class FoodController {
 			builder.with(matcher.group(1), matcher.group(2), matcher.group(3));
 		}
 
-		Specification<Food> spec = builder.build();
+		Specification<Transaction> spec = builder.build();
 
-		return new ResponseEntity<>(foodService.findFoodBySpec(spec, pageable), HttpStatus.OK);
+		return new ResponseEntity<>(transactionService.findTransactionBySpec(spec, pageable), HttpStatus.OK);
 	}
 
 	@PostMapping("")
-	public ResponseEntity<?> createFood(@RequestBody Food food) {
+	public ResponseEntity<?> createTransaction(@RequestBody Transaction transaction) {
 		// TODO: add checks (for duplicate id for example -> return error message)
 		// return new ResponseEntity<>("Error message", HttpStatus.BAD_REQUEST);
 
-		return new ResponseEntity<>(foodService.createFood(food), HttpStatus.OK);
+		return new ResponseEntity<>(transactionService.createTransaction(transaction), HttpStatus.OK);
 	}
 
 	@PutMapping("")
-	public ResponseEntity<?> updateFood(@RequestBody Food food) {
+	public ResponseEntity<?> updateTransaction(@RequestBody Transaction transaction) {
 		// TODO: add checks (for duplicate id for example -> return error message)
 		// return new ResponseEntity<>("Error message", HttpStatus.BAD_REQUEST);
 
-		return new ResponseEntity<>(foodService.updateFood(food), HttpStatus.OK);
+		return new ResponseEntity<>(transactionService.updateTransaction(transaction), HttpStatus.OK);
 	}
 
 	@DeleteMapping("")
-	public ResponseEntity<?> deleteFood(@RequestBody Food food) {
+	public ResponseEntity<?> deleteTransaction(@RequestBody Transaction transaction) {
 		// TODO: add checks (for duplicate id for example -> return error message)
 		// return new ResponseEntity<>("Error message", HttpStatus.BAD_REQUEST);
 
-		foodService.deleteFood(food);
+		transactionService.deleteTransaction(transaction);
 
 		return new ResponseEntity<>("Deleted", HttpStatus.OK);
 	}
