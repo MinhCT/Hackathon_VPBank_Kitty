@@ -37,8 +37,7 @@ public class UserCompleteEventController {
 
 	@GetMapping("/paging")
 	public ResponseEntity<Page<UserCompleteEvent>> getAllUserCompleteEvent(Pageable pageable) {
-		return new ResponseEntity<>(userCompleteEventService.getAllUserCompleteEvent(pageable),
-				HttpStatus.OK);
+		return new ResponseEntity<>(userCompleteEventService.getAllUserCompleteEvent(pageable), HttpStatus.OK);
 	}
 
 	@GetMapping("/search")
@@ -55,8 +54,7 @@ public class UserCompleteEventController {
 
 		Specification<UserCompleteEvent> spec = builder.build();
 
-		return new ResponseEntity<>(userCompleteEventService.findUserCompleteEventBySpec(spec),
-				HttpStatus.OK);
+		return new ResponseEntity<>(userCompleteEventService.findUserCompleteEventBySpec(spec), HttpStatus.OK);
 	}
 
 	@GetMapping("/search/paging")
@@ -81,9 +79,7 @@ public class UserCompleteEventController {
 	public ResponseEntity<?> createUserCompleteEvent(@RequestBody UserCompleteEvent userCompleteUserCompleteEvent) {
 		// TODO: add checks (for duplicate id for example -> return error message)
 		// return new ResponseEntity<>("Error message", HttpStatus.BAD_REQUEST);
-
-		return new ResponseEntity<>(
-				userCompleteEventService.createUserCompleteEvent(userCompleteUserCompleteEvent),
+		return new ResponseEntity<>(userCompleteEventService.createUserCompleteEvent(userCompleteUserCompleteEvent),
 				HttpStatus.OK);
 	}
 
@@ -91,9 +87,7 @@ public class UserCompleteEventController {
 	public ResponseEntity<?> updateUserCompleteEvent(@RequestBody UserCompleteEvent userCompleteUserCompleteEvent) {
 		// TODO: add checks (for duplicate id for example -> return error message)
 		// return new ResponseEntity<>("Error message", HttpStatus.BAD_REQUEST);
-
-		return new ResponseEntity<>(
-				userCompleteEventService.updateUserCompleteEvent(userCompleteUserCompleteEvent),
+		return new ResponseEntity<>(userCompleteEventService.updateUserCompleteEvent(userCompleteUserCompleteEvent),
 				HttpStatus.OK);
 	}
 

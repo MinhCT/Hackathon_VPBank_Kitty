@@ -5,7 +5,7 @@ spring:
     name: kittybank
   profiles:
 #    Uncomment the line below to use local config, comment when push/pull
-#   active: local
+# active:local
   datasource:
     driverClassName: com.mysql.jdbc.Driver
     url: jdbc:mysql://35.202.69.66:3306/kitty_bank?useSSL=false
