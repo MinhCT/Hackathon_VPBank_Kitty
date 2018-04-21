@@ -19,30 +19,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hackathon.kitty.gamification.model.Food;
-import com.hackathon.kitty.gamification.service.FoodService;
+import com.hackathon.kitty.gamification.model.KittyType;
+import com.hackathon.kitty.gamification.service.KittyTypeService;
 import com.hackathon.kitty.gamification.util.specification.BaseSpecificationsBuilder;
 
 @RestController
-@RequestMapping("/api/food")
-public class FoodController {
+@RequestMapping("/api/kittyType")
+public class KittyTypeController {
 
 	@Autowired
-	FoodService foodService;
+	KittyTypeService kittyTypeService;
 
 	@GetMapping("")
-	public ResponseEntity<List<Food>> getAllFood() {
-		return new ResponseEntity<>(foodService.getAllFood(), HttpStatus.OK);
+	public ResponseEntity<List<KittyType>> getAllKittyType() {
+		return new ResponseEntity<>(kittyTypeService.getAllKittyType(), HttpStatus.OK);
 	}
 
 	@GetMapping("/paging")
-	public ResponseEntity<Page<Food>> getAllFood(Pageable pageable) {
-		return new ResponseEntity<>(foodService.getAllFood(pageable), HttpStatus.OK);
+	public ResponseEntity<Page<KittyType>> getAllKittyType(Pageable pageable) {
+		return new ResponseEntity<>(kittyTypeService.getAllKittyType(pageable), HttpStatus.OK);
 	}
 
 	@GetMapping("/search")
-	public ResponseEntity<List<Food>> searchFood(@RequestParam(value = "query") String query) {
-		BaseSpecificationsBuilder<Food> builder = new BaseSpecificationsBuilder<>();
+	public ResponseEntity<List<KittyType>> searchKittyType(@RequestParam(value = "query") String query) {
+		BaseSpecificationsBuilder<KittyType> builder = new BaseSpecificationsBuilder<>();
 
 		Pattern pattern = Pattern.compile("(\\w+?)(:|<|>)(.*?),");
 		Matcher matcher = pattern.matcher(query + ",");
@@ -51,14 +51,15 @@ public class FoodController {
 			builder.with(matcher.group(1), matcher.group(2), matcher.group(3));
 		}
 
-		Specification<Food> spec = builder.build();
+		Specification<KittyType> spec = builder.build();
 
-		return new ResponseEntity<>(foodService.findFoodBySpec(spec), HttpStatus.OK);
+		return new ResponseEntity<>(kittyTypeService.findKittyTypeBySpec(spec), HttpStatus.OK);
 	}
 
 	@GetMapping("/search/paging")
-	public ResponseEntity<Page<Food>> searchFood(@RequestParam(value = "query") String query, Pageable pageable) {
-		BaseSpecificationsBuilder<Food> builder = new BaseSpecificationsBuilder<>();
+	public ResponseEntity<Page<KittyType>> searchKittyType(@RequestParam(value = "query") String query,
+			Pageable pageable) {
+		BaseSpecificationsBuilder<KittyType> builder = new BaseSpecificationsBuilder<>();
 
 		Pattern pattern = Pattern.compile("(\\w+?)(:|<|>)(.*?),");
 		Matcher matcher = pattern.matcher(query + ",");
@@ -67,33 +68,33 @@ public class FoodController {
 			builder.with(matcher.group(1), matcher.group(2), matcher.group(3));
 		}
 
-		Specification<Food> spec = builder.build();
+		Specification<KittyType> spec = builder.build();
 
-		return new ResponseEntity<>(foodService.findFoodBySpec(spec, pageable), HttpStatus.OK);
+		return new ResponseEntity<>(kittyTypeService.findKittyTypeBySpec(spec, pageable), HttpStatus.OK);
 	}
 
 	@PostMapping("")
-	public ResponseEntity<?> createFood(@RequestBody Food food) {
+	public ResponseEntity<?> createKittyType(@RequestBody KittyType kittyType) {
 		// TODO: add checks (for duplicate id for example -> return error message)
 		// return new ResponseEntity<>("Error message", HttpStatus.BAD_REQUEST);
 
-		return new ResponseEntity<>(foodService.createFood(food), HttpStatus.OK);
+		return new ResponseEntity<>(kittyTypeService.createKittyType(kittyType), HttpStatus.OK);
 	}
 
 	@PutMapping("")
-	public ResponseEntity<?> updateFood(@RequestBody Food food) {
+	public ResponseEntity<?> updateKittyType(@RequestBody KittyType kittyType) {
 		// TODO: add checks (for duplicate id for example -> return error message)
 		// return new ResponseEntity<>("Error message", HttpStatus.BAD_REQUEST);
 
-		return new ResponseEntity<>(foodService.updateFood(food), HttpStatus.OK);
+		return new ResponseEntity<>(kittyTypeService.updateKittyType(kittyType), HttpStatus.OK);
 	}
 
 	@DeleteMapping("")
-	public ResponseEntity<?> deleteFood(@RequestBody Food food) {
+	public ResponseEntity<?> deleteKittyType(@RequestBody KittyType kittyType) {
 		// TODO: add checks (for duplicate id for example -> return error message)
 		// return new ResponseEntity<>("Error message", HttpStatus.BAD_REQUEST);
 
-		foodService.deleteFood(food);
+		kittyTypeService.deleteKittyType(kittyType);
 
 		return new ResponseEntity<>("Deleted", HttpStatus.OK);
 	}
