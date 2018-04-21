@@ -28,17 +28,16 @@ import com.hackathon.kitty.gamification.util.specification.BaseSpecificationsBui
 public class UserCompleteEventController {
 
 	@Autowired
-	UserCompleteEventService userCompleteUserCompleteEventService;
+	UserCompleteEventService userCompleteEventService;
 
 	@GetMapping("")
 	public ResponseEntity<List<UserCompleteEvent>> getAllUserCompleteEvent() {
-		return new ResponseEntity<>(userCompleteUserCompleteEventService.getAllUserCompleteEvent(), HttpStatus.OK);
+		return new ResponseEntity<>(userCompleteEventService.getAllUserCompleteEvent(), HttpStatus.OK);
 	}
 
 	@GetMapping("/paging")
 	public ResponseEntity<Page<UserCompleteEvent>> getAllUserCompleteEvent(Pageable pageable) {
-		return new ResponseEntity<>(userCompleteUserCompleteEventService.getAllUserCompleteEvent(pageable),
-				HttpStatus.OK);
+		return new ResponseEntity<>(userCompleteEventService.getAllUserCompleteEvent(pageable), HttpStatus.OK);
 	}
 
 	@GetMapping("/search")
@@ -55,8 +54,7 @@ public class UserCompleteEventController {
 
 		Specification<UserCompleteEvent> spec = builder.build();
 
-		return new ResponseEntity<>(userCompleteUserCompleteEventService.findUserCompleteEventBySpec(spec),
-				HttpStatus.OK);
+		return new ResponseEntity<>(userCompleteEventService.findUserCompleteEventBySpec(spec), HttpStatus.OK);
 	}
 
 	@GetMapping("/search/paging")
@@ -73,7 +71,7 @@ public class UserCompleteEventController {
 
 		Specification<UserCompleteEvent> spec = builder.build();
 
-		return new ResponseEntity<>(userCompleteUserCompleteEventService.findUserCompleteEventBySpec(spec, pageable),
+		return new ResponseEntity<>(userCompleteEventService.findUserCompleteEventBySpec(spec, pageable),
 				HttpStatus.OK);
 	}
 
@@ -82,8 +80,7 @@ public class UserCompleteEventController {
 		// TODO: add checks (for duplicate id for example -> return error message)
 		// return new ResponseEntity<>("Error message", HttpStatus.BAD_REQUEST);
 
-		return new ResponseEntity<>(
-				userCompleteUserCompleteEventService.createUserCompleteEvent(userCompleteUserCompleteEvent),
+		return new ResponseEntity<>(userCompleteEventService.createUserCompleteEvent(userCompleteUserCompleteEvent),
 				HttpStatus.OK);
 	}
 
@@ -92,8 +89,7 @@ public class UserCompleteEventController {
 		// TODO: add checks (for duplicate id for example -> return error message)
 		// return new ResponseEntity<>("Error message", HttpStatus.BAD_REQUEST);
 
-		return new ResponseEntity<>(
-				userCompleteUserCompleteEventService.updateUserCompleteEvent(userCompleteUserCompleteEvent),
+		return new ResponseEntity<>(userCompleteEventService.updateUserCompleteEvent(userCompleteUserCompleteEvent),
 				HttpStatus.OK);
 	}
 
@@ -102,7 +98,7 @@ public class UserCompleteEventController {
 		// TODO: add checks (for duplicate id for example -> return error message)
 		// return new ResponseEntity<>("Error message", HttpStatus.BAD_REQUEST);
 
-		userCompleteUserCompleteEventService.deleteUserCompleteEvent(userCompleteUserCompleteEvent);
+		userCompleteEventService.deleteUserCompleteEvent(userCompleteUserCompleteEvent);
 
 		return new ResponseEntity<>("Deleted", HttpStatus.OK);
 	}
