@@ -3,6 +3,7 @@ package com.hackathon.kitty.gamification.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.hackathon.kitty.gamification.util.HungerHygieneCalculator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -44,9 +45,15 @@ public class KittyService {
 	}
 
 	public Kitty findKittyById(Integer id) {
-		Optional<Kitty> kitty = kittyRepository.findById(id);
+		Optional<Kitty> optionalKitty = kittyRepository.findById(id);
+		if (optionalKitty.isPresent()) {
+			Kitty kitty = optionalKitty.get();
+			HungerHygieneCalculator.recalculateHungerAndHygiene(kitty);
 
-		return kitty.isPresent() ? kitty.get() : null;
+			return kitty;
+		}
+
+		return null;
 	}
 
 	public void deleteKitty(Kitty kitty) {
