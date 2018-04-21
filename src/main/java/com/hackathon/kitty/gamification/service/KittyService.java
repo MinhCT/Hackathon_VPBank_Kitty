@@ -1,5 +1,6 @@
 package com.hackathon.kitty.gamification.service;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 
@@ -76,6 +77,7 @@ public class KittyService {
 				int currentHunger = kitty.getHunger() + energy;
 				if (currentHunger >= 100) currentHunger = 100;
 				kitty.setHunger(currentHunger);
+				kitty.setLastFeedDate(new Timestamp(System.currentTimeMillis()));
 			}
 
 			return kittyRepository.save(kitty);
@@ -89,6 +91,7 @@ public class KittyService {
 		if (optionalKitty.isPresent()) {
 			Kitty kitty = optionalKitty.get();
 			kitty.setHygiene(100);
+			kitty.setLastFeedDate(new Timestamp(System.currentTimeMillis()));
 			return kittyRepository.save(kitty);
 		}
 
