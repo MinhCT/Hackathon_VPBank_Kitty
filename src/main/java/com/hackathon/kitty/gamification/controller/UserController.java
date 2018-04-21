@@ -97,12 +97,16 @@ public class UserController{
     @PostMapping("/authenticate")
     public ResponseEntity<?> authenticateUser(@RequestBody User user){
         System.out.println(user.getAccountNumber() + "abc");
+            if (userService.findUserByAccountNumber(user.getAccountNumber())!= null) {
+                User user1 = userService.findUserByAccountNumber(user.getAccountNumber());
+                if (user1.getPassword().equals(user.getPassword())) {
+                    return new ResponseEntity<>(user1, HttpStatus.OK);
+                } else {
+                    return new ResponseEntity<>("Xin vui lòng nhập lại số tài khoản và mật khẩu", HttpStatus.BAD_REQUEST);
+                }
+            } else {
+                return new ResponseEntity<>("Số tài khoản không tồn tại", HttpStatus.BAD_REQUEST);
+            }
 
-        User user1 = userService.findUserByAccountNumber(user.getAccountNumber());
-        if (user1.getPassword().equals(user.getPassword())){
-            return new ResponseEntity<>(user1, HttpStatus.OK);
-        } else { 
-            return new ResponseEntity<>("Wrong username or password", HttpStatus.BAD_REQUEST);
-        }
     }
 }
