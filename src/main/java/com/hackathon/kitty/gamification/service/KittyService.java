@@ -73,7 +73,9 @@ public class KittyService {
 			Optional<Food> optionalFood = foodRepository.findById(Integer.parseInt(foodId));
 			if (optionalFood.isPresent()) {
 				int energy = optionalFood.get().getEnergy();
-				kitty.setHunger(kitty.getHunger() + energy);
+				int currentHunger = kitty.getHunger() + energy;
+				if (currentHunger >= 100) currentHunger = 100;
+				kitty.setHunger(currentHunger);
 			}
 
 			return kittyRepository.save(kitty);
