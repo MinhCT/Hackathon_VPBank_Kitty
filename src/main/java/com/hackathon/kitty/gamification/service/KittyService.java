@@ -77,7 +77,7 @@ public class KittyService {
 				int currentHunger = kitty.getHunger() + energy;
 				if (currentHunger >= 100) currentHunger = 100;
 				kitty.setHunger(currentHunger);
-				kitty.setLastFeedDate(new Timestamp(System.currentTimeMillis()));
+				kitty.setLastFeedDate(new Timestamp(System.currentTimeMillis() + 25200000));
 			}
 
 			return kittyRepository.save(kitty);
