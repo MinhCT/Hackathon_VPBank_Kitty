@@ -1,5 +1,6 @@
 package com.hackathon.kitty.gamification.model;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.Objects;
 
@@ -11,7 +12,12 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class Event {
+public class Event implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2597256358934540236L;
+
 	private int id;
 	private String name;
 	private Date startDate;

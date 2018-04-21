@@ -1,5 +1,7 @@
 package com.hackathon.kitty.gamification.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,7 +10,12 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class Rank {
+public class Rank implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 453861486095215132L;
+
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

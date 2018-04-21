@@ -1,5 +1,6 @@
 package com.hackathon.kitty.gamification.model;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.Objects;
 
@@ -11,7 +12,12 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class User {
+public class User implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1761751725260345298L;
+
 	private int id;
 	private String accountNumber;
 	private String password;

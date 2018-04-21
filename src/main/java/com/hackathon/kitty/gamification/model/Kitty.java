@@ -1,5 +1,7 @@
 package com.hackathon.kitty.gamification.model;
 
+import java.io.Serializable;
+import java.sql.Date;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -10,7 +12,12 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class Kitty {
+public class Kitty implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5103087079214209396L;
+
 	private int id;
 	private int userId;
 	private int kittyTypeId;
@@ -23,6 +30,10 @@ public class Kitty {
 	private int rank;
 	private int energy;
 	private boolean deleted;
+	private int hunger;
+	private int hygiene;
+	private Date lastFeedDate;
+	private Date lastBathDate;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -143,6 +154,46 @@ public class Kitty {
 
 	public void setIsDeleted(boolean deleted) {
 		this.deleted = deleted;
+	}
+
+	@Column(name = "hunger")
+	@NotNull
+	public int getHunger() {
+		return hunger;
+	}
+
+	public void setHunger(int hunger) {
+		this.hunger = hunger;
+	}
+
+	@Column(name = "hygiene")
+	@NotNull
+	public int getHygiene() {
+		return hygiene;
+	}
+
+	public void setHygiene(int hygiene) {
+		this.hygiene = hygiene;
+	}
+
+	@Column(name = "last_feed_date")
+	@NotNull
+	public Date getLastFeedDate() {
+		return lastFeedDate;
+	}
+
+	public void setLastFeedDate(Date lastFeedDate) {
+		this.lastFeedDate = lastFeedDate;
+	}
+
+	@Column(name = "last_bath_date")
+	@NotNull
+	public Date getLastBathDate() {
+		return lastBathDate;
+	}
+
+	public void setLastBathDate(Date lastBathDate) {
+		this.lastBathDate = lastBathDate;
 	}
 
 	@Override
