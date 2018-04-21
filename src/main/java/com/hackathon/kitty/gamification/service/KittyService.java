@@ -3,6 +3,8 @@ package com.hackathon.kitty.gamification.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.hackathon.kitty.gamification.model.Food;
+import com.hackathon.kitty.gamification.repository.FoodRepository;
 import com.hackathon.kitty.gamification.util.HungerHygieneCalculator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,6 +19,8 @@ import com.hackathon.kitty.gamification.repository.KittyRepository;
 public class KittyService {
 	@Autowired
 	KittyRepository kittyRepository;
+	@Autowired
+	FoodRepository foodRepository;
 
 	public List<Kitty> getAllKitties() {
 		return kittyRepository.findAll();
@@ -58,5 +62,34 @@ public class KittyService {
 
 	public void deleteKitty(Kitty kitty) {
 		kittyRepository.delete(kitty);
+	}
+
+	public Kitty feedKitty(String kittyId, String foodId) {
+		Optional<Kitty> optionalKitty = kittyRepository.findById(Integer.parseInt(kittyId));
+		if (optionalKitty.isPresent()) {
+			Kitty kitty = optionalKitty.get();
+			kitty = HungerHygieneCalculator.recalculateHungerAndHygiene(kitty);
+
+			Optional<Food> optionalFood = foodRepository.findById(Integer.parseInt(foodId));
+			if (optionalFood.isPresent()) {
+				int energy = optionalFood.get().getEnergy();
+				kitty.setHunger(kitty.getHunger() + energy);
+			}
+
+			return kittyRepository.save(kitty);
+		}
+
+		return null;
+	}
+
+	public Kitty bathKitty(String kittyId) {
+		Optional<Kitty> optionalKitty = kittyRepository.findById(Integer.parseInt(kittyId));
+		if (optionalKitty.isPresent()) {
+			Kitty kitty = optionalKitty.get();
+			kitty.setHygiene(100);
+			return kittyRepository.save(kitty);
+		}
+
+		return null;
 	}
 }

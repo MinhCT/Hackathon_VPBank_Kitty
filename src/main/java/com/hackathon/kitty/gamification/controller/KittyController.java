@@ -100,6 +100,14 @@ public class KittyController {
 		return new ResponseEntity<>(kittyService.findKittyById(kittyId), HttpStatus.OK);
 	}
 
+	public ResponseEntity<Kitty> feedKitty(@RequestParam("kittyId") String kittyId, @RequestParam("foodId") String foodId) {
+		return new ResponseEntity<>(kittyService.feedKitty(kittyId, foodId), HttpStatus.OK);
+	}
+
+	public ResponseEntity<Kitty> bathKitty(@RequestParam("kittyId") String kittyId) {
+		return new ResponseEntity<>(kittyService.feedKitty(kittyId), HttpStatus.OK);
+	}
+
 	@GetMapping("testgitagain")
 	public ResponseEntity<String> test() {
 		return new ResponseEntity<>("test", HttpStatus.OK);
