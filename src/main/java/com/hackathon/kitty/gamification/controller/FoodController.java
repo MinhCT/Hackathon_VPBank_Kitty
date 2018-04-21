@@ -44,6 +44,9 @@ public class FoodController {
 	@Autowired
 	KittyService kittyService;
 
+	@Autowired
+	UserBuyFoodService userBuyFoodService;
+
 	@GetMapping("/store")
 	public ResponseEntity<ItemStore> getAllItemStore(){
 		List<Food> foods = foodService.getAllFood();
@@ -97,10 +100,29 @@ public class FoodController {
 				return new ResponseEntity<>("not enough money", HttpStatus.OK);
 			} else {
 				//pay CP
+				buyer.setCreditPoint(buyer.getCreditPoint()-food.getPrice());
 				//user own food
+				try{
+					UserBuyFood userBuyFood = userBuyFoodService.findByUserIdAndFoodId(buyer.getId(), Integer.parseInt(id));
+					if(userBuyFood == null){
+						userBuyFood = new UserBuyFood();
+						userBuyFood.setQuantity(1);
+						userBuyFood.setUserId(buyer.getId());
+						userBuyFood.setFoodId(Integer.parseInt(id));
+						userBuyFoodService.createUserBuyFood(userBuyFood);
+					} else {
+						userBuyFood.setQuantity(userBuyFood.getQuantity()+1);
+						userBuyFoodService.updateUserBuyFood(userBuyFood);
+					}
+
+				} catch (Exception e ){
+					return new ResponseEntity<>("error", HttpStatus.BAD_REQUEST);
+				}
+				//update entity
+				userService.updateUser(buyer);
+				return new ResponseEntity<>("buy successfully", HttpStatus.OK);
 			}
 		}
-		return new ResponseEntity<>("undefined", HttpStatus.BAD_REQUEST);
 	}
 
 	@GetMapping("")
