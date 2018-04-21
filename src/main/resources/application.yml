@@ -8,13 +8,13 @@ spring:
    # active: local
   datasource:
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/kitty_bank
+    url: jdbc:mysql://35.202.69.66:3306/kitty_bank?useSSL=false
     username: root
     password: kitty123
   jpa:
     hibernate.ddl-auto: update
     generate-ddl: true
-    show-sql: true
+    show-sql: false
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5Dialect
