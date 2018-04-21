@@ -10,14 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.hackathon.kitty.gamification.model.Kitty;
 import com.hackathon.kitty.gamification.service.KittyService;
@@ -100,6 +93,21 @@ public class KittyController {
 		kittyService.deleteKitty(kitty);
 
 		return new ResponseEntity<>("Deleted", HttpStatus.OK);
+	}
+
+	@GetMapping("/{id}")
+	public ResponseEntity<Kitty> findKittyById(@PathVariable("id") Integer kittyId) {
+		return new ResponseEntity<>(kittyService.findKittyById(kittyId), HttpStatus.OK);
+	}
+
+	@PostMapping("/feed")
+	public ResponseEntity<Kitty> feedKitty(@RequestParam("kittyId") String kittyId, @RequestParam("foodId") String foodId) {
+		return new ResponseEntity<>(kittyService.feedKitty(kittyId, foodId), HttpStatus.OK);
+	}
+
+	@PostMapping("/bath")
+	public ResponseEntity<Kitty> bathKitty(@RequestParam("kittyId") String kittyId) {
+		return new ResponseEntity<>(kittyService.bathKitty(kittyId), HttpStatus.OK);
 	}
 
 	@GetMapping("testgitagain")

@@ -79,7 +79,6 @@ public class UserCompleteEventController {
 	public ResponseEntity<?> createUserCompleteEvent(@RequestBody UserCompleteEvent userCompleteUserCompleteEvent) {
 		// TODO: add checks (for duplicate id for example -> return error message)
 		// return new ResponseEntity<>("Error message", HttpStatus.BAD_REQUEST);
-
 		return new ResponseEntity<>(userCompleteEventService.createUserCompleteEvent(userCompleteUserCompleteEvent),
 				HttpStatus.OK);
 	}
@@ -88,7 +87,6 @@ public class UserCompleteEventController {
 	public ResponseEntity<?> updateUserCompleteEvent(@RequestBody UserCompleteEvent userCompleteUserCompleteEvent) {
 		// TODO: add checks (for duplicate id for example -> return error message)
 		// return new ResponseEntity<>("Error message", HttpStatus.BAD_REQUEST);
-
 		return new ResponseEntity<>(userCompleteEventService.updateUserCompleteEvent(userCompleteUserCompleteEvent),
 				HttpStatus.OK);
 	}
