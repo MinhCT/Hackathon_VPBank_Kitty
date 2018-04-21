@@ -48,7 +48,7 @@ public class KittyService {
 		Optional<Kitty> optionalKitty = kittyRepository.findById(id);
 		if (optionalKitty.isPresent()) {
 			Kitty kitty = optionalKitty.get();
-			HungerHygieneCalculator.recalculateHungerAndHygiene(kitty);
+			kitty = HungerHygieneCalculator.recalculateHungerAndHygiene(kitty);
 
 			return kitty;
 		}
