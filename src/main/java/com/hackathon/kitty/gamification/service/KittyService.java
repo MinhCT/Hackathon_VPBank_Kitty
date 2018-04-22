@@ -66,6 +66,11 @@ public class KittyService {
 		kittyRepository.delete(kitty);
 	}
 
+	public List<Kitty> findByUserId(int userId){
+		List<Kitty> kitties = kittyRepository.findByUserId(userId);
+		return kitties;
+	}
+
 	public Kitty feedKitty(String kittyId, String foodId) {
 		Optional<Kitty> optionalKitty = kittyRepository.findById(Integer.parseInt(kittyId));
 		if (optionalKitty.isPresent()) {
