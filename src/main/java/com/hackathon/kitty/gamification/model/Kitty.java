@@ -32,6 +32,10 @@ public class Kitty implements Serializable {
     private Timestamp lastFeedDate;
     private Timestamp lastBathDate;
 
+    public Kitty() {
+        
+    }
+
     public Kitty(int userId, int kittyTypeId, String name, byte gender, String image, int price, int level, int experience, int rank, boolean deleted, int hunger, int hygiene, Timestamp lastFeedDate, Timestamp lastBathDate) {
         this.userId = userId;
         this.kittyTypeId = kittyTypeId;
