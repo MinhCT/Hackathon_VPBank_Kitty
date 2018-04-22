@@ -32,17 +32,6 @@ public class Kitty implements Serializable {
     private Timestamp lastFeedDate;
     private Timestamp lastBathDate;
 
-    @Transient
-    private long mili;
-
-    public long getMili() {
-        return System.currentTimeMillis();
-    }
-
-    public void setMili(long mili) {
-        this.mili = mili;
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)

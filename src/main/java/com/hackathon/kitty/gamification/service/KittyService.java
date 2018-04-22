@@ -97,7 +97,7 @@ public class KittyService {
 		if (optionalKitty.isPresent()) {
 			Kitty kitty = optionalKitty.get();
 			kitty.setHygiene(100);
-			kitty.setLastFeedDate(new Timestamp(System.currentTimeMillis()));
+			kitty.setLastBathDate(new Timestamp(System.currentTimeMillis() + 25200000));
 			return kittyRepository.save(kitty);
 		}
 
