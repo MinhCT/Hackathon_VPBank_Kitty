@@ -110,8 +110,8 @@ public class KittyController {
 	}
 
 	@PostMapping("/hybrid")
-	public ResponseEntity<Kitty> hybrid(@RequestParam("userId") String userId) {
-		return new ResponseEntity<>(kittyService.createKitty(userId), HttpStatus.OK);
+	public ResponseEntity<Kitty> hybrid(@RequestParam("userId") String userId, @RequestParam("kittyName") String kitttyName) {
+		return new ResponseEntity<>(kittyService.createKitty(userId, kitttyName), HttpStatus.OK);
 	}
 
 	@GetMapping("testgitagain")
