@@ -109,6 +109,11 @@ public class KittyController {
 		return new ResponseEntity<>(kittyService.bathKitty(kittyId), HttpStatus.OK);
 	}
 
+	@PostMapping("/hybrid")
+	public ResponseEntity<Kitty> hybrid(@RequestParam("userId") String userId) {
+		return new ResponseEntity<>(kittyService.createKitty(userId), HttpStatus.OK);
+	}
+
 	@GetMapping("testgitagain")
 	public ResponseEntity<String> test() {
 		return new ResponseEntity<>("test", HttpStatus.OK);

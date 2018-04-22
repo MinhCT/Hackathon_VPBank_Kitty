@@ -32,6 +32,23 @@ public class Kitty implements Serializable {
     private Timestamp lastFeedDate;
     private Timestamp lastBathDate;
 
+    public Kitty(int userId, int kittyTypeId, String name, byte gender, String image, int price, int level, int experience, int rank, boolean deleted, int hunger, int hygiene, Timestamp lastFeedDate, Timestamp lastBathDate) {
+        this.userId = userId;
+        this.kittyTypeId = kittyTypeId;
+        this.name = name;
+        this.gender = gender;
+        this.image = image;
+        this.price = price;
+        this.level = level;
+        this.experience = experience;
+        this.rank = rank;
+        this.deleted = deleted;
+        this.hunger = hunger;
+        this.hygiene = hygiene;
+        this.lastFeedDate = lastFeedDate;
+        this.lastBathDate = lastBathDate;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
